@@ -5,8 +5,11 @@ EXEC=SCEXT2
 
 all: $(EXEC)
 
-SCEXT2: gauss.o matrix.o
-	$(CC) $(CFLAGS) -o $(EXEC) gauss.o matrix.o
+SCEXT2: main.o gauss.o matrix.o 
+	$(CC) $(CFLAGS) -o $(EXEC) main.o gauss.o matrix.o
+
+main.o : main.c
+	$(CC) -c main.c
 
 gauss.o : gauss.c gauss.h
 	$(CC) -c gauss.c
