@@ -51,6 +51,7 @@ int* hex_to_bits(char* filepath){
 	}
 	printf("\n");
 	fclose(f);
+	return bits_array;
 }
 
 int* xor_cipher_clear(int* clear_txt, int* cipher_txt){
@@ -64,5 +65,10 @@ int* xor_cipher_clear(int* clear_txt, int* cipher_txt){
 	for(i = 0; i < 131; i++){
 		ret[i] = clear_txt[i]^cipher_txt[i];
 	}
+	printf("XOR  = ");
+	for(i = 0; i < 131; i++){
+		printf("%d", ret[i]);
+	}
+	printf("\n");
 	return ret;
 }

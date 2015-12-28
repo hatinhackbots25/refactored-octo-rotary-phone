@@ -7,7 +7,6 @@ int main(int argc, char* argv[]){
 		{0, 1, 1, 0},
 		{1, 0, 1, 1}
 	};
-	char msg[100] = "****BEGINNINGOFMESSAGE***";
 	
 	Matrix testM = convert(3, 4, test);
 	printm(testM);
@@ -15,9 +14,10 @@ int main(int argc, char* argv[]){
 	printf("======================================\n");
 	printm(testM);
 	free_matrix(testM);
+	char msg[100] = "****BEGINNINGOFMESSAGE***";
 	int* osef1 = hex_to_bits("cipher1");
 	int* osef2 = text_to_bits(msg);
-	int* osef = xor_cipher_clear(osef1, osef2);
+	int* osef = xor_cipher_clear(osef2, osef1);
 	free(osef1);
 	free(osef2);
 	free(osef);
