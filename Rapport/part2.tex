@@ -18,15 +18,22 @@ Le fonctionnement est très simple :
 
 \begin{enumerate}
  \item Nous allons récupérer la position des caractères dans notre alphabet
- \item Nous allons multiplier (modulo un nombre) cette position par un coefficient donné (la clé)
+ \item Nous allons alors multiplier/additionner/soustraire (modulo un nombre) cette position par un coefficient donné (la clé)
  \item La nouvelle position trouvée donne le chiffre du caractère clair
 \end{enumerate}
 Nous pouvons noter cet algorithme de la manière suivante :
 \begin{center}
     \begin{equation}
-	k*l\equiv c[n]
+	E(M)\equiv (kM+t)[n]
     \end{equation}
 \end{center}
-Où $k$ est le coefficient, $l$ le caractère clair, $c$ le caractère chiffré et $n$ le modulo utilisé.
+Où $k$ et $t$ sont des entiers et $k$ est premier par rapport à $n$ (le modulo utilisé, la taille de l'alphabet).\\
+Pour déchiffrer un message ainsi codé, nous pouvons alors utiliser l'équation suivante :
+\begin{center}
+    \begin{equation}
+	D(C)\equiv ((n-k)M+(n-t))[n]
+    \end{equation}
+\end{center}
+Un des inconvénients de ce système est qu'il ne change pas la fréquence d'apparition des lettres, nous avons ici un système à permutations. Il est alors simple de reconnaître, en connaissant la langue d'origine du texte les fréquences les plus élevées. Une fois ces fréquences trouvées, nous pouvons poser deux équations à deux inconnues pour retrouver les coefficients $k$ et $t$.
 
 \subsection{\textit{SCEX\_T2}}
