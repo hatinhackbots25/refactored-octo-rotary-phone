@@ -12,7 +12,7 @@ Matrix CreateNewMatrix(int r, int c){
   int j;
   for(i=0; i < r; i++){
     for(j=0; j< c; j++){
-      mat.matrix[i][j] = j;
+      mat.matrix[i][j] = 0;
     }
   }
   
