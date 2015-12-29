@@ -31,9 +31,30 @@ Où $k$ et $t$ sont des entiers et $k$ est premier par rapport à $n$ (le modulo
 Pour déchiffrer un message ainsi codé, nous pouvons alors utiliser l'équation suivante :
 \begin{center}
     \begin{equation}
-	D(C)\equiv ((n-k)M+(n-t))[n]
+	D(C)\equiv ((n-k)C+(n-t))[n]
     \end{equation}
 \end{center}
-Un des inconvénients de ce système est qu'il ne change pas la fréquence d'apparition des lettres, nous avons ici un système à permutations. Il est alors simple de reconnaître, en connaissant la langue d'origine du texte les fréquences les plus élevées. Une fois ces fréquences trouvées, nous pouvons poser deux équations à deux inconnues pour retrouver les coefficients $k$ et $t$.
-
+Un des inconvénients de ce système est qu'il ne change pas la fréquence d'apparition des lettres, nous avons ici un système à permutations. Il est alors simple de reconnaître, en connaissant la langue d'origine du texte les fréquences les plus élevées. Une fois ces fréquences trouvées, nous pouvons poser deux équations à deux inconnues pour retrouver les coefficients $k$ et $t$.\\
+Si, par exemple, nous avons un texte en anglais chiffré ainsi avec comme lettres les plus présentes les lettres F et C, nous pouvons en déduire que le F correspond à la lettre E (lettre la plus utilisée en anglais) et que le C correspond à la lettre T (seconde lettre la plus utilisée en anglais.\\
+Nous pouvons alors assumer que $E(4)=5$ et $E(19)=2$. Nous pouvons alors retrouver les deux équations suivantes :
+\begin{center}
+    \begin{equation}
+	\left\{
+	\begin{array}{lll}
+	    4k+t & \equiv & 5[26] \\
+	    19k+t & \equiv & 2[26]
+	\end{array}
+	\right.
+    \end{equation}
+\end{center}
+La résolution de ce système nous permet de trouver que $k=5$ et $t=11$. Nous avons ainsi les équations suivantes liées au chiffrement et déchiffrement :
+\begin{center}
+    \begin{equation}
+	E(M)\equiv (5M+11)[26]
+    \end{equation}
+    \begin{equation}
+	D(C)\equiv (21C+15)[26]
+    \end{equation}
+\end{center}
+Nous pouvons alors retrouver le texte clair.
 \subsection{\textit{SCEX\_T2}}
