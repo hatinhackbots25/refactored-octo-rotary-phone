@@ -1,4 +1,32 @@
-\section{Analyse mathématique ces systèmes \textit{SCEX\_T1} et \textit{SCEX\_T2}}
+\section{Analyse mathématique des systèmes \textit{SCEX\_T1} et \textit{SCEX\_T2}}
 \subsection{\textit{SCEX\_T1}}
+\subsubsection{Decimation cipher}
+Ici, nous allons pouvoir retrouver une méthode de chiffrement dite de \enquote{\textit{décimation}}. Cette dernière se présente sous la forme suivante :
+\begin{center}
+    \begin{equation}
+	c_t = \left\{
+	    \begin{array}{lll}
+		m_{t}\oplus\sigma_{t} & \mbox{si } t\equiv 0 & (\mbox{mod } 3) \\
+		m_{t}\oplus\sigma_{t+1} & \mbox{si } t\equiv 1 & (\mbox{mod } 3) \\
+		m_{t}\oplus\sigma_{t+2} & \mbox{si } t\equiv 2 & (\mbox{mod } 3)
+	    \end{array}
+	\right.
+    \end{equation}
+\end{center}
+
+Le fonctionnement est très simple :
+
+\begin{enumerate}
+ \item Nous allons récupérer la position des caractères dans notre alphabet
+ \item Nous allons multiplier (modulo un nombre) cette position par un coefficient donné (la clé)
+ \item La nouvelle position trouvée donne le chiffre du caractère clair
+\end{enumerate}
+Nous pouvons noter cet algorithme de la manière suivante :
+\begin{center}
+    \begin{equation}
+	k*l\equiv c[n]
+    \end{equation}
+\end{center}
+Où $k$ est le coefficient, $l$ le caractère clair, $c$ le caractère chiffré et $n$ le modulo utilisé.
 
 \subsection{\textit{SCEX\_T2}}
