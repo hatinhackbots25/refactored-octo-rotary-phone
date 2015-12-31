@@ -11,6 +11,7 @@ Ici, nous allons pouvoir retrouver une méthode de chiffrement dite de \enquote{
 		m_{t}\oplus\sigma_{t+2} & \mbox{si } t\equiv 2 & (\mbox{mod } 3)
 	    \end{array}
 	\right.
+	\label{scext1}
     \end{equation}
 \end{center}
 
@@ -24,14 +25,14 @@ Le fonctionnement est très simple :
 Nous pouvons noter cet algorithme de la manière suivante :
 \begin{center}
     \begin{equation}
-	E(M)\equiv (kM+t)[n]
+	E(M)\equiv (kM+r)[n]
     \end{equation}
 \end{center}
-Où $k$ et $t$ sont des entiers et $k$ est premier par rapport à $n$ (le modulo utilisé, la taille de l'alphabet).\\
+Où $k$ et $r$ sont des entiers et $k$ est premier par rapport à $n$ (le modulo utilisé, la taille de l'alphabet).\\
 Pour déchiffrer un message ainsi codé, nous pouvons alors utiliser l'équation suivante :
 \begin{center}
     \begin{equation}
-	D(C)\equiv ((n-k)C+(n-t))[n]
+	D(C)\equiv ((n-k)C+(n-r))[n]
     \end{equation}
 \end{center}
 Un des inconvénients de ce système est qu'il ne change pas la fréquence d'apparition des lettres, nous avons ici un système à permutations. Il est alors simple de reconnaître, en connaissant la langue d'origine du texte les fréquences les plus élevées. Une fois ces fréquences trouvées, nous pouvons poser deux équations à deux inconnues pour retrouver les coefficients $k$ et $t$.\\
@@ -41,13 +42,13 @@ Nous pouvons alors assumer que $E(4)=5$ et $E(19)=2$. Nous pouvons alors retrouv
     \begin{equation}
 	\left\{
 	\begin{array}{lll}
-	    4k+t & \equiv & 5[26] \\
-	    19k+t & \equiv & 2[26]
+	    4k+r & \equiv & 5[26] \\
+	    19k+r & \equiv & 2[26]
 	\end{array}
 	\right.
     \end{equation}
 \end{center}
-La résolution de ce système nous permet de trouver que $k=5$ et $t=11$. Nous avons ainsi les équations suivantes liées au chiffrement et déchiffrement :
+La résolution de ce système nous permet de trouver que $k=5$ et $r=11$. Nous avons ainsi les équations suivantes liées au chiffrement et déchiffrement :
 \begin{center}
     \begin{equation}
 	E(M)\equiv (5M+11)[26]
@@ -56,5 +57,14 @@ La résolution de ce système nous permet de trouver que $k=5$ et $t=11$. Nous a
 	D(C)\equiv (21C+15)[26]
     \end{equation}
 \end{center}
-Nous pouvons alors retrouver le texte clair.
+Nous pouvons alors retrouver le texte clair.\\~\\\par
+Dans notre cas, nous avons un système légèrement différent. En effet, ce dernier (c.f. \ref{scext1}) comporte trois fonctions qui seront utilisées tour-à-tour en fonction de l'indice du bit à chiffrer.\\
+Connaissant l'algorithme utilisé, nous savons que le coefficient $k$ est ici égal à $1$. La valeur de $r$ va quand à elle varier en fonction de la fonction utilisée ($f_1, f_2 \mbox{ ou } f_3$)
 \subsection{\textit{SCEX\_T2}}
+Contrairement à l'algorithme précédent, \textit{SCEX\_T2} ne va pas utiliser les fonctions $f_1, f_2 \mbox{ et } f_3$ tour à tour mais toutes en même temps lors de la partie de chiffrement. Nous allons ici nous retrouver devant la formule suivante :
+\begin{center}
+    \begin{equation}
+	c_t=m_t\oplus\left(f_1\left(x_3,x_2,x_1\right)\oplus f_2\left(x_3,x_2,x_1\right)\oplus f_3\left(x_3,x_2,x_1\right) \right)
+    \end{equation}
+\end{center}
+La valeur du coefficient $k$ reste ici encore égale à $1$ mais le coefficient $r$ ne va pas se calculer de la même manière. En effet, ce dernier n'est plus dépendant d'une seule fonction par tour mais d'un XOR des trois fonctions à chaque tour.
