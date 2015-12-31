@@ -9,12 +9,6 @@ int main(int argc, char* argv[]){
 		{1, 0, 1, 1}
 	};
 	
-	Matrix testM = convert(3, 4, test);
-	printm(testM);
-	Pivot_Gauss(testM);
-	printf("======================================\n");
-	printm(testM);
-	free_matrix(testM);
 	char msg[100] = "****BEGINNINGOFMESSAGE***";
 	int* osef1 = hex_to_bits("cipher1");
 	int* osef2 = text_to_bits(msg);
@@ -30,6 +24,7 @@ int main(int argc, char* argv[]){
 		   printf("ERROR: %d != %d at %d\n", osef[i], lf.matrix[i][131], i);
 	}
 	printm(lf);
+	Pivot_Gauss(lf);
 	
 	free_matrix(lf);
 	free_reg(reg1);
